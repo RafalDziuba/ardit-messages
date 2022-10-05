@@ -29,8 +29,5 @@ export const useContractStore = defineStore('contract', {
     },
   },
   getters: {
-    // contractId: (state) => {
-    //   return state.contractId;
-    // },
   },
 });

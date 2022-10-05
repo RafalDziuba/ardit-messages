@@ -12,8 +12,8 @@
       <button @click.prevent="sendContent">Send</button>
     </form>
 
-    <div class="content">
-      <div class="message" v-for="msg in store.contract.messages.reverse()" :key="msg.id">
+    <div v-if="store.contract.messages" class="content">
+      <div class="message"  v-for="msg in store.contract.messages.slice().reverse()" :key="msg.id">
         <p>{{ msg.content }}</p>
         <h3>{{ msg.creator }}</h3>
       </div>
@@ -163,7 +163,7 @@ $gray: #9b9b9b;
       border-radius: 0.5rem;
       overflow: hidden;
       p {
-        font-size: 2rem;
+        font-size: 1.8rem;
       }
       h3 {
         margin-left: auto;
