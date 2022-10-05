@@ -37,6 +37,7 @@ const sendContent = async () => {
   } else {
     await store.addContent(content.value);
     content.value = '';
+    store.getContract();
   }
 };
 </script>
