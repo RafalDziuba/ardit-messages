@@ -29,8 +29,8 @@
         <p>{{ msg.content }}</p>
         <h3>{{ msg.creator }}</h3>
         <div class="votes">
-          <div class="upvote">+</div>
-          <div class="downvote">-</div>
+          <div class="upvote" @click.prevent="upVote(msg.id)">+</div>
+          <div class="downvote" @click.prevent="downVote(msg.id)">-</div>
         </div>
       </div>
     </div>
@@ -54,6 +54,14 @@ const sendContent = async () => {
     content.value = "";
     store.getContract();
   }
+};
+
+const upVote = async (id) => {
+  await store.addUpvote(id);
+};
+
+const downVote = async (id) => {
+  await store.addDownvote(id);
 };
 </script>
 

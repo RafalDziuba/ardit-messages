@@ -27,7 +27,24 @@ export const useContractStore = defineStore('contract', {
       await contract.connect(wallet);
       await contract.writeInteraction({ function: 'postMessage', content: payload });
     },
+
+    async addUpvote (id) {
+      const warp = WarpFactory.forMainnet();
+      const contract = warp.contract(this.contractId);
+      const wallet = await warp.arweave.wallets.generate();
+      await contract.connect(wallet);
+      await contract.writeInteraction({ function: 'upvoteMessage', id: id });
+    },
+
+    async addDownvote (id) {
+      const warp = WarpFactory.forMainnet();
+      const contract = warp.contract(this.contractId);
+      const wallet = await warp.arweave.wallets.generate();
+      await contract.connect(wallet);
+      await contract.writeInteraction({ function: 'downvoteMessage', id: id });
+    }
   },
+
   getters: {
   },
 });
