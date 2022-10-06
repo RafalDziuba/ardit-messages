@@ -2,7 +2,10 @@
   <div class="wrapper">
     <h1>
       <p>Contract id:</p>
-      {{ store.contractId }}
+      <a :href="`https://sonar.warp.cc/#/app/contract/${store.contractId}`" >
+        {{ store.contractId }}
+      </a>
+      
     </h1>
     <form>
       <div class="form__group field">
@@ -10,12 +13,12 @@
           type="input"
           v-model="content"
           class="form__field"
-          placeholder="Name"
-          name="name"
-          id="name"
+          placeholder="Message"
+          name="message"
+          id="message"
           required
         />
-        <label for="name" class="form__label">Name</label>
+        <label for="message" class="form__label">Message</label>
       </div>
       <button @click.prevent="sendContent">Send</button>
     </form>
@@ -26,8 +29,9 @@
         v-for="msg in store.contract.messages.slice().reverse()"
         :key="msg.id"
       >
+        <div class="votes-counter">{{ msg.votes.status }}</div>
         <p>{{ msg.content }}</p>
-        <h3>{{ msg.creator }}</h3>
+        <h3><a :href="`https://viewblock.io/arweave/address/${msg.creator}`">{{ msg.creator }}}</a></h3>
         <div class="votes">
           <div class="upvote" @click.prevent="upVote(msg.messageId)">+</div>
           <div class="downvote" @click.prevent="downVote(msg.messageId)">-</div>
@@ -192,6 +196,12 @@ $gray: #9b9b9b;
         margin-left: auto;
         margin-top: 1rem;
       }
+
+.votes-counter {
+  position: relative;
+  top: 1rem;
+  left: -3rem;
+}
 
       .votes {
         position: absolute;

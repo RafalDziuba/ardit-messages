@@ -13,7 +13,6 @@ export const useContractStore = defineStore('contract', {
     async getContract() {
       const warp = WarpFactory.forMainnet();
       const contract = warp.contract(this.contractId);
-      // const address = await warp.arweave.wallets.jwkToAddress(wallet);
       const { cachedValue } = await contract.readState();
       this.contract = cachedValue.state;
 
