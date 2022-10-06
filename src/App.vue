@@ -29,8 +29,8 @@
         <p>{{ msg.content }}</p>
         <h3>{{ msg.creator }}</h3>
         <div class="votes">
-          <div class="upvote" @click.prevent="upVote(msg.id)">+</div>
-          <div class="downvote" @click.prevent="downVote(msg.id)">-</div>
+          <div class="upvote" @click.prevent="upVote(msg.messageId)">+</div>
+          <div class="downvote" @click.prevent="downVote(msg.messageId)">-</div>
         </div>
       </div>
     </div>

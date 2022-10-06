@@ -5,7 +5,7 @@ export const useContractStore = defineStore('contract', {
   state: () => {
     return {
       contract: [],
-      contractId: '104Baqn4dDwL7ojuZtbMy5qitBa-WY1_sOai79TJ_Ig',
+      contractId: '48G_IllU9G-PRyl4Ods88STtQ1h0Eo8zHQUHdNlHKZw',
       messages: [],
     };
   },
