@@ -6,37 +6,52 @@
     </h1>
     <form>
       <div class="form__group field">
-        <input type="input" v-model="content" class="form__field" placeholder="Name" name="name" id="name" required />
+        <input
+          type="input"
+          v-model="content"
+          class="form__field"
+          placeholder="Name"
+          name="name"
+          id="name"
+          required
+        />
         <label for="name" class="form__label">Name</label>
       </div>
       <button @click.prevent="sendContent">Send</button>
     </form>
 
     <div v-if="store.contract.messages" class="content">
-      <div class="message"  v-for="msg in store.contract.messages.slice().reverse()" :key="msg.id">
+      <div
+        class="message"
+        v-for="msg in store.contract.messages.slice().reverse()"
+        :key="msg.id"
+      >
         <p>{{ msg.content }}</p>
         <h3>{{ msg.creator }}</h3>
+        <div class="votes">
+          <div class="upvote">+</div>
+          <div class="downvote">-</div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { useContractStore } from './stores/contract';
-import { ref } from 'vue';
+import { useContractStore } from "./stores/contract";
+import { ref } from "vue";
 
-let content = ref('');
+let content = ref("");
 const store = useContractStore();
-
 
 store.getContract();
 
 const sendContent = async () => {
-  if (content.value == '') {
+  if (content.value == "") {
     return;
   } else {
     await store.addContent(content.value);
-    content.value = '';
+    content.value = "";
     store.getContract();
   }
 };
@@ -47,12 +62,12 @@ $primary: #11998e;
 $secondary: #38ef7d;
 $white: #fff;
 $gray: #9b9b9b;
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;1,100;1,400;1,500;1,600;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;1,100;1,400;1,500;1,600;1,700&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto Mono', monospace;
+  font-family: "Roboto Mono", monospace;
   font-size: 10px;
 }
 
@@ -153,7 +168,7 @@ $gray: #9b9b9b;
     flex-direction: column;
     .message {
       width: 40rem;
-
+      position: relative;
       display: flex;
       justify-content: center;
       flex-direction: column;
@@ -162,13 +177,23 @@ $gray: #9b9b9b;
 
       background-color: #38ef7e55;
       border-radius: 0.5rem;
-      overflow: hidden;
       p {
         font-size: 1.8rem;
       }
       h3 {
         margin-left: auto;
         margin-top: 1rem;
+      }
+
+      .votes {
+        position: absolute;
+        right: -2rem;
+        top: 1rem;
+        .upvote,
+        .downvote {
+          font-size: 1.4rem;
+          cursor: pointer;
+        }
       }
     }
   }
