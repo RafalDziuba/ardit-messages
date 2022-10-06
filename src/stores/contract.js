@@ -44,6 +44,4 @@ export const useContractStore = defineStore('contract', {
     }
   },
 
-  getters: {
-  },
 });
