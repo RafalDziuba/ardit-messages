@@ -4,10 +4,10 @@
   </div>
   <div class="wrapper">
     <MessageForm></MessageForm>
-    <div v-if="store.contract.messages" class="content">
+    <div v-if="store.contractState.messages" class="content">
       <div
         class="message"
-        v-for="msg in store.contract.messages.slice().reverse()"
+        v-for="msg in store.contractState.messages.slice().reverse()"
         :key="msg.id"
       >
         <div class="votes-counter">{{ msg.votes.status }}</div>
@@ -18,8 +18,18 @@
           >
         </h3>
         <div class="votes">
-          <div class="upvote" @click.prevent="upVote(msg.messageId)">+</div>
-          <div class="downvote" @click.prevent="downVote(msg.messageId)">-</div>
+          <div
+            class="upvote"
+            @click.prevent="addInteraction('upvoteMessage', msg.messageId)"
+          >
+            +
+          </div>
+          <div
+            class="downvote"
+            @click.prevent="addInteraction('downvoteMessage', msg.messageId)"
+          >
+            -
+          </div>
         </div>
       </div>
     </div>
@@ -35,12 +45,8 @@ const store = useContractStore();
 
 store.getContract();
 
-const upVote = async (id) => {
-  await store.addUpvote(id);
-};
-
-const downVote = async (id) => {
-  await store.addDownvote(id);
+const addInteraction = async (functionType, id) => {
+  await store.voteInteraction(functionType, id);
 };
 </script>
 
