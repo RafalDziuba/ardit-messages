@@ -17,46 +17,67 @@ const sendContent = async () => {
 </script>
 
 <template>
- <section>
-  <button @click="store.connectWallet()">CONNECT WALLET</button>
-    <form>
-    <div class="form__group field">
-      <input
-        type="input"
-        v-model="content"
-        class="form__field"
-        placeholder="Message"
-        name="message"
-        id="message"
-        required
-      />
-      <label for="message" class="form__label">Message</label>
+  <section>
+    <div class="wallet-menu">
+      <button @click="store.connectWallet()">CONNECT WALLET</button>
     </div>
-    <button @click.prevent="sendContent">Send</button>
-  </form>
- </section>
+    <form>
+      <div class="form__group field">
+        <input
+          type="input"
+          v-model="content"
+          class="form__field"
+          placeholder="Message"
+          name="message"
+          id="message"
+          required
+        />
+        <label for="message" class="form__label">Message</label>
+      </div>
+      <button @click.prevent="sendContent">Send</button>
+    </form>
+  </section>
 </template>
 
 <style scoped lang="scss">
+@import "../style/_colors";
+
 $primary: #11998e;
-$secondary: #38ef7d;
 $white: #fff;
 $gray: #9b9b9b;
 
 section {
-    width: 40%;
+  width: 40rem;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  .wallet-menu {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 5rem;
+
+    button {
+      width: 60%;
+      height: 5rem;
+      background-color: $secondary;
+      color: $white;
+      border: none;
+      cursor: pointer;
+    }
+  }
 }
 
 form {
-  width: 90%;
+  width: 80%;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
   align-items: flex-end;
   .form__group {
     position: relative;
     padding: 15px 0 0;
     margin-top: 10px;
-    width: 50%;
+    width: 100%;
   }
 
   .form__field {
@@ -117,7 +138,11 @@ form {
   button {
     width: 10rem;
     height: 3rem;
+    margin-top: 2rem;
     cursor: pointer;
+    background-color: $contrast;
+    color: $white;
+    border: none;
   }
 }
 </style>

@@ -29,7 +29,11 @@ header {
     display: flex;
     flex-direction: row;
     color: $white;
+    p {
+      font-size: 1.4rem;
+    }
     a {
+      font-size: 1.4rem;
       margin-left: 1rem;
       color: $white;
     }
