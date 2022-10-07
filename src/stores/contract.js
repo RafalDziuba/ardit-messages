@@ -30,12 +30,12 @@ export const useContractStore = defineStore("contract", {
 
     async connectWallet() {
       this.wallet = new ArweaveWebWallet({
-        // optionally provide information about your app that will be displayed in the wallet provider interface
         name: "App name",
         // logo: 'URL of your logo to be displayed to users'
       });
-      this.wallet.setUrl("arweave.app");
-      await this.wallet.connect();
+      this.wallet.setUrl('arweave.app');
+      const address = await this.wallet.connect();
+      console.log(address);
     },
 
     async voteInteraction(functionType, id) {

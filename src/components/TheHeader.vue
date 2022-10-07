@@ -15,7 +15,7 @@ const store = useContractStore();
 </template>
 
 <style scoped lang="scss">
-    @import "../style/_colors";
+@import "../style/_colors";
 header {
   width: 100%;
   height: 6rem;
