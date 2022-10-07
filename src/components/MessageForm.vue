@@ -18,6 +18,7 @@ const sendContent = async () => {
 
 <template>
  <section>
+  <button @click="store.connectWallet()">CONNECT WALLET</button>
     <form>
     <div class="form__group field">
       <input

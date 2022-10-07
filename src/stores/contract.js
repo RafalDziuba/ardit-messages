@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { WarpFactory } from "warp-contracts/web";
+import { ArweaveWebWallet } from "arweave-wallet-connector";
 
 export const useContractStore = defineStore("contract", {
   state: () => {
@@ -22,9 +23,19 @@ export const useContractStore = defineStore("contract", {
       console.log(this.contractState);
     },
 
+    // async connectWallet() {
+    //   this.wallet = await this.warp.arweave.wallets.generate();
+    //   this.contract.connect(this.wallet);
+    // },
+
     async connectWallet() {
-      this.wallet = await this.warp.arweave.wallets.generate();
-      this.contract.connect(this.wallet);
+      this.wallet = new ArweaveWebWallet({
+        // optionally provide information about your app that will be displayed in the wallet provider interface
+        name: "App name",
+        // logo: 'URL of your logo to be displayed to users'
+      });
+      this.wallet.setUrl("arweave.app");
+      await this.wallet.connect();
     },
 
     async voteInteraction(functionType, id) {
