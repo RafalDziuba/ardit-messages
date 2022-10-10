@@ -1,5 +1,6 @@
 <script setup>
-import { useContractStore } from "../stores/contract";
+import { useContractStore } from '../stores/contract';
+import TheLoader from './TheLoader.vue';
 const store = useContractStore();
 
 const addInteraction = async (functionType, msg) => {
@@ -9,39 +10,46 @@ const addInteraction = async (functionType, msg) => {
 </script>
 
 <template>
-  <div v-if="store.contractState.messages" class="content">
-    <div
-      class="message"
-      v-for="msg in store.contractState.messages.slice().reverse()"
-      :key="msg.id"
-    >
-      <p>{{ msg.content }}</p>
-      <h3>
-        <a :href="`https://viewblock.io/arweave/address/${msg.creator}`">{{
-          msg.creator
-        }}</a>
-      </h3>
-      <div class="votes-container">
-        <div class="score"><p>{{msg.votes.status}}</p></div>
-        <div class="icons"><div
-          class="upvote"
-          @click.prevent="addInteraction('upvoteMessage', msg)"
-        >
-          <img src="../assets/like.png" alt="upvote icon" />
+  <div>
+    <div v-if="store.contractState.messages" class="content">
+      <div
+        class="message"
+        v-for="msg in store.contractState.messages.slice().reverse()"
+        :key="msg.id"
+      >
+        <p>{{ msg.content }}</p>
+        <h3>
+          <a :href="`https://viewblock.io/arweave/address/${msg.creator}`">{{
+            msg.creator
+          }}</a>
+        </h3>
+        <div class="votes-container">
+          <div class="score">
+            <p>{{ msg.votes.status }}</p>
+          </div>
+          <div class="icons">
+            <div
+              class="upvote"
+              @click.prevent="addInteraction('upvoteMessage', msg)"
+            >
+              <img src="../assets/like.png" alt="upvote icon" />
+            </div>
+            <div
+              class="downvote"
+              @click.prevent="addInteraction('downvoteMessage', msg)"
+            >
+              <img src="../assets/dislike.png" alt="downvote icon" />
+            </div>
+          </div>
         </div>
-        <div
-          class="downvote"
-          @click.prevent="addInteraction('downvoteMessage', msg)"
-        >
-          <img src="../assets/dislike.png" alt="downvote icon" />
-        </div></div>
       </div>
     </div>
+    <TheLoader v-else></TheLoader>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import "../style/_colors";
+@import '../style/_colors';
 
 .content {
   margin-top: 3rem;
@@ -96,7 +104,7 @@ const addInteraction = async (functionType, msg) => {
         margin-right: 0.5rem;
         font-size: 2rem;
         p {
-            display: inline-block;
+          display: inline-block;
         }
       }
       .upvote,
