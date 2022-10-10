@@ -2,8 +2,9 @@
 import { useContractStore } from "../stores/contract";
 const store = useContractStore();
 
-const addInteraction = async (functionType, id) => {
-  await store.voteInteraction(functionType, id);
+const addInteraction = async (functionType, msg) => {
+  await store.voteInteraction(functionType, msg);
+  store.getContract();
 };
 </script>
 
@@ -24,13 +25,13 @@ const addInteraction = async (functionType, id) => {
         <div class="score"><p>{{msg.votes.status}}</p></div>
         <div class="icons"><div
           class="upvote"
-          @click.prevent="addInteraction('upvoteMessage', msg.messageId)"
+          @click.prevent="addInteraction('upvoteMessage', msg)"
         >
           <img src="../assets/like.png" alt="upvote icon" />
         </div>
         <div
           class="downvote"
-          @click.prevent="addInteraction('downvoteMessage', msg.messageId)"
+          @click.prevent="addInteraction('downvoteMessage', msg)"
         >
           <img src="../assets/dislike.png" alt="downvote icon" />
         </div></div>

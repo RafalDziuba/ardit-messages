@@ -1,6 +1,7 @@
 <script setup>
 import { useContractStore } from "../stores/contract";
 const store = useContractStore();
+
 </script>
 
 <template>

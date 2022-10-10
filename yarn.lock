@@ -3789,12 +3789,7 @@
   "resolved" "https://registry.npmjs.org/extend/-/extend-3.0.2.tgz"
   "version" "3.0.2"
 
-"extsprintf@^1.2.0":
-  "integrity" "sha512-Wrk35e8ydCKDj/ArClo1VrPVmN8zph5V4AtHwIuHhvMXsKf73UT3BOD+azBIW+3wOJ4FhEH7zyaJCFvChjYvMA=="
-  "resolved" "https://registry.npmjs.org/extsprintf/-/extsprintf-1.4.1.tgz"
-  "version" "1.4.1"
-
-"extsprintf@1.3.0":
+"extsprintf@^1.2.0", "extsprintf@1.3.0":
   "integrity" "sha512-11Ndz7Nv+mvAC1j0ktTa7fAb0vLyGGX+rMHNBYQviQDGU0Hw7lhctJANqbPhu9nV9/izT/IntTgZ7Im/9LJs9g=="
   "resolved" "https://registry.npmjs.org/extsprintf/-/extsprintf-1.3.0.tgz"
   "version" "1.3.0"
@@ -6927,10 +6922,10 @@
     "scss-tokenizer" "^0.4.3"
     "yargs" "^17.2.1"
 
-"sass-loader@^13.0.2":
-  "integrity" "sha512-BbiqbVmbfJaWVeOOAu2o7DhYWtcNmTfvroVgFXa6k2hHheMxNAeDHLNoDy/Q5aoaVlz0LH+MbMktKwm9vN/j8Q=="
-  "resolved" "https://registry.npmjs.org/sass-loader/-/sass-loader-13.0.2.tgz"
-  "version" "13.0.2"
+"sass-loader@^13.1.0":
+  "integrity" "sha512-tZS1RJQ2n2+QNyf3CCAo1H562WjL/5AM6Gi8YcPVVoNxQX8d19mx8E+8fRrMWsyc93ZL6Q8vZDSM0FHVTJaVnQ=="
+  "resolved" "https://registry.npmjs.org/sass-loader/-/sass-loader-13.1.0.tgz"
+  "version" "13.1.0"
   dependencies:
     "klona" "^2.0.4"
     "neo-async" "^2.6.2"
@@ -7965,6 +7960,11 @@
     "@vue/runtime-dom" "3.2.40"
     "@vue/server-renderer" "3.2.40"
     "@vue/shared" "3.2.40"
+
+"vue3-toastify@^0.0.3":
+  "integrity" "sha512-CZxdEzFBWTwCSG6hi2FEGXTdpSaPJlZxOVQVefPG/40boIYXTMQ6CaoXmyCTcKBuj5RAoWE/hAxyI+xpVfqdMA=="
+  "resolved" "https://registry.npmjs.org/vue3-toastify/-/vue3-toastify-0.0.3.tgz"
+  "version" "0.0.3"
 
 "warp-contracts@^1.2.13":
   "integrity" "sha512-qSlkxb4N+5oFKUWqPDfIA5ZqsEJRyjJtmeFadI6yMgSm+HLvREDdGl3RrmBOdNAEC+ROvKv7ii4sWq0/fxrV5Q=="

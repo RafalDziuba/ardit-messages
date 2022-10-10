@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { WarpFactory } from "warp-contracts/web";
 import { ArweaveWebWallet } from "arweave-wallet-connector";
+import { toast } from "vue3-toastify";
 
 export const useContractStore = defineStore("contract", {
   state: () => {
@@ -29,20 +30,31 @@ export const useContractStore = defineStore("contract", {
         name: "Ardit",
         // logo: 'URL of your logo to be displayed to users'
       });
+      // const loader = toast.loading("Connecting...");
       await this.wallet.setUrl("arweave.app");
       await this.wallet.connect();
       await this.contract.connect("use_wallet");
+      // toast.remove(loader);
+      toast.success("Conntected!");
     },
 
-    async voteInteraction(functionType, id) {
+    async voteInteraction(functionType, message) {
       try {
-        await this.contract.writeInteraction({
-          function: functionType,
-          id: id,
-        });
+        if (message.votes.addresses.includes(this.wallet.address)) {
+          toast.error("Already voted!");
+        } else if (message.creator == this.wallet.address) {
+          toast.error(`You can't vote on your own content!`);
+        } else {
+          await this.contract.writeInteraction({
+            function: functionType,
+            id: message.messageId,
+          });
+          toast.success("Voted!");
+          this.getContract();
+        }
       } catch (error) {
         console.log(error);
-        alert("hi from vote error");
+        toast.error("Wallet not connected!");
       }
     },
 
@@ -54,7 +66,7 @@ export const useContractStore = defineStore("contract", {
         });
       } catch (error) {
         console.log(error);
-        alert("hi from error");
+        toast.error("Wallet not connected!");
       }
     },
   },
