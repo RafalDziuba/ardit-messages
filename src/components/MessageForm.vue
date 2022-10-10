@@ -129,6 +129,7 @@ form {
     border-image-slice: 1;
   }
   .form__field {
+    color: $white;
     &:required,
     &:invalid {
       box-shadow: none;

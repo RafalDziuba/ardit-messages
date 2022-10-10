@@ -46,6 +46,7 @@ const addInteraction = async (functionType, msg) => {
 .content {
   margin-top: 3rem;
   height: 100%;
+  min-width: 50rem;
   width: 50rem;
   padding-bottom: 2.5rem;
   overflow: auto;

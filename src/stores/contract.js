@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { WarpFactory } from "warp-contracts/web";
 import { ArweaveWebWallet } from "arweave-wallet-connector";
-import { toast } from "vue3-toastify";
+import { createToast } from "mosha-vue-toastify";
 
 export const useContractStore = defineStore("contract", {
   state: () => {
@@ -26,47 +26,60 @@ export const useContractStore = defineStore("contract", {
     },
 
     async connectWallet() {
-      this.wallet = new ArweaveWebWallet({
+      let arweaveWebWallet = new ArweaveWebWallet({
         name: "Ardit",
         // logo: 'URL of your logo to be displayed to users'
       });
       // const loader = toast.loading("Connecting...");
-      await this.wallet.setUrl("arweave.app");
-      await this.wallet.connect();
+      await arweaveWebWallet.setUrl("arweave.app");
+      await arweaveWebWallet.connect();
+      this.wallet = arweaveWebWallet;
       await this.contract.connect("use_wallet");
       // toast.remove(loader);
-      toast.success("Conntected!");
+      createToast("Conntected!", {
+        type: "success",
+      });
     },
 
     async voteInteraction(functionType, message) {
       try {
         if (message.votes.addresses.includes(this.wallet.address)) {
-          toast.error("Already voted!");
+          createToast("Already voted!", {
+            type: "danger",
+          });
         } else if (message.creator == this.wallet.address) {
-          toast.error(`You can't vote on your own content!`);
+          createToast(`You can't vote on your own content!`, {
+            type: "danger",
+          });
         } else {
-          await this.contract.writeInteraction({
+          await this.contract.connect('use_wallet').writeInteraction({
             function: functionType,
             id: message.messageId,
           });
-          toast.success("Voted!");
+          createToast("Voted!", {
+            type: "success",
+          });
           this.getContract();
         }
       } catch (error) {
         console.log(error);
-        toast.error("Wallet not connected!");
+        createToast("Wallet not connected!", {
+          type: "danger",
+        });
       }
     },
 
     async addContent(payload) {
       try {
-        await this.contract.writeInteraction({
+        await this.contract.connect('use_wallet').writeInteraction({
           function: "postMessage",
           content: payload,
         });
       } catch (error) {
         console.log(error);
-        toast.error("Wallet not connected!");
+        createToast("Wallet not connected!", {
+          type: "danger",
+        });
       }
     },
   },
