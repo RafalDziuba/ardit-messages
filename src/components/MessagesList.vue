@@ -116,6 +116,11 @@ const addInteraction = async (functionType, msg) => {
       .upvote,
       .downvote {
         cursor: pointer;
+        transition: transform 0.2s ease;
+
+        &:hover {
+          transform: scale(1.1);
+        }
       }
 
       .dislike {
