@@ -10,7 +10,7 @@ const addInteraction = async (functionType, msg) => {
 </script>
 
 <template>
-  <div>
+  <section>
     <div v-if="store.contractState.messages" class="content">
       <div
         class="message"
@@ -19,9 +19,11 @@ const addInteraction = async (functionType, msg) => {
       >
         <p>{{ msg.content }}</p>
         <h3>
-          <a :href="`https://viewblock.io/arweave/address/${msg.creator}`">{{
-            msg.creator
-          }}</a>
+          <a
+            target="_blank"
+            :href="`https://viewblock.io/arweave/address/${msg.creator}`"
+            >{{ msg.creator }}</a
+          >
         </h3>
         <div class="votes-container">
           <div class="score">
@@ -32,20 +34,24 @@ const addInteraction = async (functionType, msg) => {
               class="upvote"
               @click.prevent="addInteraction('upvoteMessage', msg)"
             >
-              <img src="../assets/like.png" alt="upvote icon" />
+              <img src="../assets/positive-vote.png" alt="upvote icon" />
             </div>
             <div
               class="downvote"
               @click.prevent="addInteraction('downvoteMessage', msg)"
             >
-              <img src="../assets/dislike.png" alt="downvote icon" />
+              <img
+                src="../assets/positive-vote.png"
+                alt="downvote icon"
+                class="dislike"
+              />
             </div>
           </div>
         </div>
       </div>
     </div>
     <TheLoader v-else></TheLoader>
-  </div>
+  </section>
 </template>
 
 <style lang="scss" scoped>
@@ -53,7 +59,7 @@ const addInteraction = async (functionType, msg) => {
 
 .content {
   margin-top: 3rem;
-  height: 100%;
+  height: 80%;
   min-width: 50rem;
   width: 50rem;
   padding-bottom: 2.5rem;
@@ -110,6 +116,10 @@ const addInteraction = async (functionType, msg) => {
       .upvote,
       .downvote {
         cursor: pointer;
+      }
+
+      .dislike {
+        transform: rotate(0.5turn);
       }
     }
   }

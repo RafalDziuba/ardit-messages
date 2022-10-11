@@ -1,13 +1,19 @@
 <template>
-  <div class="lds-ring">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
+  <div class="wrapper">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </div>
 </template>
 
 <style scoped>
+
+.wrapper {
+  width: 50rem;
+}
 .lds-ring {
   display: inline-block;
   position: relative;
